@@ -418,7 +418,8 @@ public class MainActivity extends AppCompatActivity {
                                         tmpPercentage = (generalDecimalFormat.format(Double.parseDouble(tmpRecovered.replaceAll(",", ""))
                                                 / Double.parseDouble(tmpCases.replaceAll(",", ""))
                                                 * 100)) + "%";
-                                        tmpRecovered = tmpRecovered;
+
+                                        tmpRecovered = tmpRecovered + " \n " + tmpPercentage;
 
                                     }
                                     else {tmpRecovered = "NA";}
@@ -431,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
                                         tmpPercentage = (generalDecimalFormat.format(Double.parseDouble(tmpDeaths.replaceAll(",", ""))
                                                 / Double.parseDouble(tmpCases.replaceAll(",", ""))
                                                 * 100)) + "%";
-                                        tmpDeaths = tmpDeaths ;
+                                        tmpDeaths = tmpDeaths + " \n " + tmpPercentage;
                                     }
                                     else {tmpDeaths = "NA";}
                                 }

@@ -261,6 +261,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
         android:weightSum="1">
 
         <LinearLayout
