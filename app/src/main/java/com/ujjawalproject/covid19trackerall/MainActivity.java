@@ -94,7 +94,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+    button=(Button)findViewById(R.id.button2);
+    button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            secondActivitymethod();
+        }
+    });
 
 
 
@@ -252,6 +258,17 @@ public class MainActivity extends AppCompatActivity {
         // Call refreshData once the app is opened only one time, then user can request updates
         refreshData();
     }
+
+
+
+
+    public void secondActivitymethod()
+    {
+
+        Intent intent =new Intent(this ,secondActivity.class);
+        startActivity(intent);
+    }
+
 
 
 
