@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -85,10 +86,26 @@ public class MainActivity extends AppCompatActivity {
     Iterator<org.jsoup.nodes.Element> rowIterator;
     ProgressBar countryProgressBar;
 
+    //state data
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
+
+        //country data
+
+
+
+        textViewActiveTitle = (TextView)findViewById(R.id.textViewActiveTitle);
+        textViewActive = (TextView)findViewById(R.id.textViewActive);
+
         textViewCases = (TextView)findViewById(R.id.textViewCases);
         textViewRecovered = (TextView)findViewById(R.id.textViewRecovered);
         textViewDeaths = (TextView)findViewById(R.id.textViewDeaths);
@@ -159,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
             textViewRecovered.setText(preferences.getString("textViewRecovered", null));
             textViewDeaths.setText(preferences.getString("textViewDeaths", null));
             textViewDate.setText(preferences.getString("textViewDate", null));
+            textViewActive.setText(preferences.getString("textViewActive", null));
         }
 
         // Add Text Change Listener to textSearchBox to filter by Country
@@ -235,6 +253,9 @@ public class MainActivity extends AppCompatActivity {
         refreshData();
     }
 
+
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -295,11 +316,22 @@ public class MainActivity extends AppCompatActivity {
 
     void calculate_percentages () {
 
+        tmpNumber = Double.parseDouble(textViewRecovered.getText().toString().replaceAll(",", ""))
+                / Double.parseDouble(textViewCases.getText().toString().replaceAll(",", ""))
+                * 100;
+        textViewRecoveredTitle.setText("Cured " + generalDecimalFormat.format(tmpNumber) + "%");
+
+
 
         tmpNumber = Double.parseDouble(textViewDeaths.getText().toString().replaceAll(",", ""))
                 / Double.parseDouble(textViewCases.getText().toString().replaceAll(",", ""))
                 * 100 ;
         textViewDeathsTitle.setText("Death " + generalDecimalFormat.format(tmpNumber) + "%");
+
+        tmpNumber = Double.parseDouble(textViewActive.getText().toString().replaceAll(",", ""))
+                / Double.parseDouble(textViewCases.getText().toString().replaceAll(",", ""))
+                * 100 ;
+        textViewActiveTitle.setText("All Active   " + generalDecimalFormat.format(tmpNumber) + "%");
 
 
     }
@@ -336,6 +368,8 @@ public class MainActivity extends AppCompatActivity {
                                     {colNumRecovered = i; Log.e("Recovered: ", cols.get(i).text());}
                                     else if (cols.get(i).text().contains("Total") && cols.get(i).text().contains("Deaths"))
                                     {colNumDeaths = i; Log.e("Deaths: ", cols.get(i).text());}
+                                    else if (cols.get(i).text().contains("Active") && cols.get(i).text().contains("Cases"))
+                                    {colNumActive = i; Log.e("Active: ", cols.get(i).text());}
 
                                     else if (cols.get(i).text().contains("New") && cols.get(i).text().contains("Cases"))
                                     {colNumNewCases = i; Log.e("NewCases: ", cols.get(i).text());}
@@ -352,6 +386,9 @@ public class MainActivity extends AppCompatActivity {
                                     textViewCases.setText(cols.get(colNumCases).text());
                                     textViewRecovered.setText(cols.get(colNumRecovered).text());
                                     textViewDeaths.setText(cols.get(colNumDeaths).text());
+
+                                    if (cols.get(colNumActive).hasText()) {textViewActive.setText(cols.get(colNumActive).text());}
+                                    else {textViewActive.setText("0");}
                                     if (cols.get(colNumNewCases).hasText()) {textViewNewCases.setText(cols.get(colNumNewCases).text());}
                                     else {textViewNewCases.setText("0");}
                                     if (cols.get(colNumNewDeaths).hasText()) {textViewNewDeaths.setText(cols.get(colNumNewDeaths).text());}
@@ -416,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
                             // save results
                             editor.putString("textViewCases", textViewCases.getText().toString());
                             editor.putString("textViewRecovered", textViewRecovered.getText().toString());
-
+                            editor.putString("textViewActive", textViewActive.getText().toString());
                             editor.putString("textViewDeaths", textViewDeaths.getText().toString());
                             editor.putString("textViewDate", textViewDate.getText().toString());
                             editor.apply();

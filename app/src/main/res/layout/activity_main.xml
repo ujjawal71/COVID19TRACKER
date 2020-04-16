@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Recovered"
+                    android:text="Cured"
                     android:textAlignment="center"
                     android:background="#00ff00"
                     android:textColor="#000000"
@@ -252,6 +252,79 @@
             </LinearLayout>
         </LinearLayout>
 
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/layoutTopActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/back_generic"
+            android:orientation="vertical"
+            android:padding="3dp" >
+
+            <TextView
+                android:id="@+id/textViewActiveTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="All Active"
+                android:textAlignment="center"
+                android:background="#8080ff"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewActive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:shadowColor="@color/colorShadow"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:text="00000"
+                android:background="#8080ff"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
@@ -277,6 +350,10 @@
 
                 android:textSize="14dp"
                 android:textStyle="bold" />
+
+
+
+
 
 
             <LinearLayout
@@ -410,7 +487,7 @@
                     android:background="@drawable/back_table_cell"
                     android:gravity="center_horizontal"
                     android:padding="2dp"
-                    android:text="Recover"
+                    android:text="Cured"
                     android:textAlignment="center"
                     android:textColor="#00ff00"
                     android:textSize="13dp"
