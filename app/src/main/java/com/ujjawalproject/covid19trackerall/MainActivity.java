@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            secondActivitymethod();
+            statesecondActivitymethod();
         }
     });
 
@@ -262,10 +262,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void secondActivitymethod()
+    public void statesecondActivitymethod()
     {
 
-        Intent intent =new Intent(this ,secondActivity.class);
+        Intent intent =new Intent(this , StatesecondActivity.class);
         startActivity(intent);
     }
 
