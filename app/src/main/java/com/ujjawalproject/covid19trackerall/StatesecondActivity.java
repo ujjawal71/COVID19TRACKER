@@ -36,7 +36,7 @@ public class StatesecondActivity extends AppCompatActivity {
     private ListView lv;
 
     Intent sharingIntent;
-    // URL to get contacts JSON
+    // URL to get state JSON
     private static String url = "https://api.covid19india.org/data.json";
 
     ArrayList<HashMap<String, String>> contactList;
@@ -108,19 +108,6 @@ public class StatesecondActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Async task class to get json by making HTTP call
      */
@@ -153,7 +140,7 @@ public class StatesecondActivity extends AppCompatActivity {
                     // Getting JSON Array node
                     JSONArray contacts = jsonObj.getJSONArray("statewise");
 
-                    // looping through All Contacts
+                    // looping through All State
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
 
@@ -163,11 +150,6 @@ public class StatesecondActivity extends AppCompatActivity {
                         String active = c.getString("active");
                         String deaths = c.getString("deaths");
 
-                        // Phone node is JSON Object
-                       /* JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");*/
 
                         // tmp hash map for single contact
                         HashMap<String, String> contact = new HashMap<>();
@@ -179,7 +161,7 @@ public class StatesecondActivity extends AppCompatActivity {
                         contact.put("active",active);
                         contact.put("deaths",deaths);
 
-                        // adding contact to contact list
+                        // adding State to State list
                         contactList.add(contact);
                     }
                 } catch (final JSONException e) {
@@ -201,7 +183,7 @@ public class StatesecondActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                "Network Not Available!",
                                 Toast.LENGTH_LONG)
                                 .show();
                     }
