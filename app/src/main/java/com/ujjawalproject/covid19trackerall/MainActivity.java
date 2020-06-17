@@ -372,12 +372,11 @@ public class MainActivity extends AppCompatActivity {
                             // get countries
                             rowIterator = countriesRows.iterator();
                             allCountriesResults = new ArrayList<allcountry>();
-
                             // read table header and find correct column number for each category
                             row = rowIterator.next();
                             cols = row.select("th");
                             //Log.e("COLS: ", cols.text());
-                            if (cols.get(0).text().contains("Country")) {
+                            if (cols.get(1).text().contains("Country")) {
                                 for(int i=1; i < cols.size(); i++){
                                     if (cols.get(i).text().contains("Total") && cols.get(i).text().contains("Cases"))
                                     {colNumCases = i; Log.e("Cases: ", cols.get(i).text());}
@@ -399,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                                 row = rowIterator.next();
                                 cols = row.select("td");
 
-                                if (cols.get(0).text().contains("World")) {
+                                if (cols.get(1).text().contains("World")) {
                                     textViewCases.setText(cols.get(colNumCases).text());
                                     textViewRecovered.setText(cols.get(colNumRecovered).text());
                                     textViewDeaths.setText(cols.get(colNumDeaths).text());
@@ -412,18 +411,18 @@ public class MainActivity extends AppCompatActivity {
                                     else {textViewNewDeaths.setText("0");}
                                     continue;
                                 } else if (
-                                        cols.get(0).text().contains("Total") ||
-                                                cols.get(0).text().contains("Europe") ||
-                                                cols.get(0).text().contains("North America") ||
-                                                cols.get(0).text().contains("Asia") ||
-                                                cols.get(0).text().contains("South America") ||
-                                                cols.get(0).text().contains("Africa") ||
-                                                cols.get(0).text().contains("Oceania")
+                                        cols.get(1).text().contains("Total") ||
+                                                cols.get(1).text().contains("Europe") ||
+                                                cols.get(1).text().contains("North America") ||
+                                                cols.get(1).text().contains("Asia") ||
+                                                cols.get(1).text().contains("South America") ||
+                                                cols.get(1).text().contains("Africa") ||
+                                                cols.get(1).text().contains("Oceania")
                                 ) {
                                     continue;
                                 }
 
-                                if (cols.get(colNumCountry).hasText()) {tmpCountry = cols.get(0).text();}
+                                if (cols.get(colNumCountry).hasText()) {tmpCountry = cols.get(1).text();}
                                 else {tmpCountry = "NA";}
 
                                 if (cols.get(colNumCases).hasText()) {tmpCases = cols.get(colNumCases).text();}
